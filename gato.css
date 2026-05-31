@@ -1,0 +1,276 @@
+:root {
+    --color-de-fondo: #c33999;
+    --color-de-letras: #f0e1f7;
+    --color-de-barra: #A31621;
+    --color-de-botones: #800d96;
+    --color-extra: #DB222A;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-de-fondo);
+    color: var(--color-de-letras);
+    padding: 20px;
+    margin: 0;
+}
+
+h1 { color: var(--color-extra); text-align: center; }
+        h3 { color: #000000; text-align: center; margin-bottom: 20px; }
+
+        .navbar, .navbar-default {
+            background-color: #A52BC8 !important;
+            background-image: none !important;
+            border: none;
+        }
+        .navbar-brand, .navbar-nav > li > a {
+            color: #4B0082 !important;
+            font-weight: bold;
+        }
+        .navbar-nav > li > a:hover,
+        .dropdown-menu > li > a:hover {
+            background-color: #B57EDC !important;
+            color: #ffffff !important;
+        }
+        .dropdown-menu {
+            background-color: #c33999 !important;
+        }
+        .dropdown-menu > li > a {
+            color: #ffffff !important;
+        }
+        .form-control,
+        select {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #ffffff;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .btn-primary {
+            background-color: #800d96 !important;
+            border-color: #800d96 !important;
+            color: #ffffff !important;
+        }
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #9d35b1 !important;
+            border-color: #9d35b1 !important;
+        }
+
+        table { border-collapse: collapse; width: 95%; background-color: #9932cc; margin: 20px auto; color: #fff; border-radius: 8px; overflow: hidden; font-size: 13px; }
+        th { background-color: #800d96; color: white; padding: 15px; text-align: left; border: 1px solid #6a0dad; }
+        td { padding: 12px 15px; border: 1px solid #b366e6; color: #fff; }
+        tr:nth-child(even) { background-color: #8a2be2; }
+        tr:hover { background-color: #e277f3; }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background: url('patata.jpg') center/cover no-repeat;
+        }
+
+/* Shared gato styles */
+:root {
+    --color-morado-oscuro: #800d96;
+    --color-borde: #b366e6;
+    --color-boton-fondo: #800d96;
+    --color-boton-hover: #c33999;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.empty-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.titulo-seccion h1 {
+    color: #ff0000;
+    font-size: 45px;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 5px;
+}
+
+.btn-nuevo {
+    display: inline-block;
+    background-color: var(--color-boton-fondo);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid white;
+    margin-bottom: 20px;
+}
+
+.btn-nuevo:hover {
+    background-color: var(--color-boton-hover);
+    color: white;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.x-card {
+    background-color: rgba(128, 13, 150, 0.85);
+    border: 2px solid var(--color-borde);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.x-card:hover {
+    transform: translateY(-10px);
+    border-color: white;
+}
+
+.card-header {
+    background-color: var(--color-morado-oscuro);
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.card-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+.card-img-container {
+    width: 100%;
+    height: 200px;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+    line-height: 1.6;
+}
+
+.card-stat {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 4px;
+    font-size: 14px;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #f1b6f9;
+    margin-right: 5px;
+}
+
+.container-form {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid var(--color-morado-oscuro);
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+h2 {
+    text-align: center;
+    color: #ff69b4;
+    text-shadow: 1px 1px #000;
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #d57bee;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-morado-oscuro);
+    background-color: #1a1a1a;
+    color: white;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+}
+
+small {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ffb3ff;
+    font-style: italic;
+}
+
+.btn-submit {
+    background-color: var(--color-morado-oscuro) !important;
+    color: white;
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #ff69b4 !important;
+    transform: scale(1.02);
+}
+
+.seccion-dueno {
+    border-top: 1px dashed #555;
+    margin-top: 20px;
+    padding-top: 15px;
+}
+

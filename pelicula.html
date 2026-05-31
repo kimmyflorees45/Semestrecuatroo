@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="pelicula.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/wondrous-2');
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: #C8A2C8 !important;
+            border: none;
+        }
+        .navbar-brand,
+        .navbar-nav > li > a {
+            color: #4B0082 !important;
+            font-weight: bold;
+        }
+        .navbar-nav > li > a:hover {
+            background-color: #B57EDC !important;
+        }
+        .dropdown-menu > li > a {
+            color: #4B0082 !important;
+        }
+        .jumbotron {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>Película</title>
+</head>
+    <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+
+                <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Inicio</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 1 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="mostrar.php">Mostrar Datos</a></li>
+            <li><a class="dropdown-item" href="mterdatos.php">Meter Datos</a></li>
+            <li><a class="dropdown-item" href="pan.html">pan</a></li>
+          </ul>
+        </li>                    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 2 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="relaciones01.php">Relaciones 1</a></li>
+            <li><a class="dropdown-item" href="relaciones02.php">Relaciones 2</a></li>
+            <li><a class="dropdown-item" href="gato.php">Relaciones 3</a></li>
+            <li><a class="dropdown-item" href="mostrargato.php">Mostrar Gatos</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados.php">Capturar Datos Relacionados</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados - copia.php">Capturar Datos Relacionados - Copia</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 3 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
+            <li><a class="dropdown-item" href="pelicula.html">Películas</a></li>
+            <li><a class="dropdown-item" href="sailor.html">Sailor moon</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+      </div>
+    </nav>
+
+    <div class="container">
+        <h1>Pagina de peliculas</h1>
+        <form id="form">
+        <input type="text" id="search" placeholder="tangled...">
+        <input type="submit" value="Buscar">
+        </form>
+          </div>
+
+          <main id="main"></main>
+
+          <script>
+const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1&language=es-ES';
+const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&language=es-ES&query=';
+
+const main = document.getElementById('main');
+const form = document.getElementById('form');
+const search = document.getElementById('search');
+
+// Obtener películas iniciales
+getMovies(API_URL);
+
+async function getMovies(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    showMovies(data.results);
+}
+
+function showMovies(movies) {
+    main.innerHTML = '';
+    movies.forEach((movie) => {
+        const { title, poster_path, vote_average, overview } = movie;
+        const movieEl = document.createElement('div');
+       
+        movieEl.classList.add('movie');
+        movieEl.innerHTML = `
+            <img src="${IMG_PATH + poster_path}" alt="${title}">
+            <div class="movie-info">
+                <h3>${title}</h3>
+                <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+            </div>
+
+            <div class="overview">
+                <h3>Resumen</h3>
+                ${overview}
+            </div>
+    `;
+        main.appendChild(movieEl);
+    });
+}
+
+function getClassByRate(vote) {
+    if (vote >= 8) {
+        return 'green';
+    } else if (vote >= 5) {
+        return 'orange';
+    } else {
+        return 'red';
+    }
+}
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const searchTerm = search.value;
+    if (searchTerm && searchTerm !== '') {
+        getMovies(SEARCH_API + searchTerm);
+        search.value = '';
+    } else {
+        window.location.reload();
+    }
+});
+          </script>
+
+    </body>
+</html>

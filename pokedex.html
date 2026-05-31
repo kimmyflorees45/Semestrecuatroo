@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="pokedex.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/wondrous-2');
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: #C8A2C8 !important;
+            border: none;
+        }
+        .navbar-brand,
+        .navbar-nav > li > a {
+            color: #4B0082 !important;
+            font-weight: bold;
+        }
+        .navbar-nav > li > a:hover {
+            background-color: #B57EDC !important;
+        }
+        .dropdown-menu > li > a {
+            color: #4B0082 !important;
+        }
+        .jumbotron {
+            background: rgba(0,0,0,0.5);
+            color: rgb(48, 8, 8);
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+
+            <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Inicio</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 1 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="mostrar.php">Mostrar Datos</a></li>
+            <li><a class="dropdown-item" href="mterdatos.php">Meter Datos</a></li>
+            <li><a class="dropdown-item" href="pan.html">pan</a></li>
+          </ul>
+        </li>                    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 2 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="relaciones01.php">Relaciones 1</a></li>
+            <li><a class="dropdown-item" href="relaciones02.php">Relaciones 2</a></li>
+            <li><a class="dropdown-item" href="gato.php">Relaciones 3</a></li>
+            <li><a class="dropdown-item" href="mostrargato.php">Mostrar Gatos</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados.php">Capturar Datos Relacionados</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados - copia.php">Capturar Datos Relacionados - Copia</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 3 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
+            <li><a class="dropdown-item" href="pelicula.html">Películas</a></li>
+            <li><a class="dropdown-item" href="sailor.html">Sailor moon</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+    <div class="main-container">
+        <div class="search-box">
+            <input type="text" id="pokeName" placeholder="Escribe el nombre de un Pokémon...">
+            <button onclick="fetchPokemon()">Presiona</button>
+        </div>
+
+        <div class="pokedex-content">
+            <div class="info-panel">
+                <img src="pokemaster.jpeg" id="pokeImg" alt="Pokemaster">
+                <span id="pokename"></span>
+                <div class="data-grid">
+                    <div id="pokeHe">Altura: --</div>
+                    <div id="pokeWe">Peso: --</div>
+                    <div id="pokeorder">Orden: --</div>
+                    <div id="pokeid">ID: --</div>
+                    <div id="pokeitem">Habilidad: --</div>
+                    <div id="pokeType">Tipo: --</div>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <h3>Movimientos</h3>
+                <div class="moves-list">
+                    <div id="pokemove1">Movimiento 1: --</div>
+                    <div id="pokemove2">Movimiento 2: --</div>
+                    <div id="pokemove3">Movimiento 3: --</div>
+                    <div id="pokemove4">Movimiento 4: --</div>
+                </div>
+                <h3>Estadísticas</h3>
+                <div class="grafica">
+                    <canvas id="miCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="chart.js"></script>
+    <script src="pokedex.js"></script>
+</body>
+</html>

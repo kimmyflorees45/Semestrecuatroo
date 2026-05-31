@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sailor Moon - Personajes</title>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="pelicula.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+            background-color: #C8A2C8 !important;
+            border: none;
+        }
+        .navbar-brand,
+        .navbar-nav > li > a {
+            color: #4B0082 !important;
+            font-weight: bold;
+        }
+        .navbar-nav > li > a:hover {
+            background-color: #B57EDC !important;
+        }
+        .dropdown-menu > li > a {
+            color: #4B0082 !important;
+        }
+        .jumbotron {
+            background: rgba(0,0,0,0.5);
+            color: rgb(228, 99, 99);
+            border-radius: 10px;
+        }
+    </style>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container">
+
+            <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Inicio</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 1 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="mostrar.php">Mostrar Datos</a></li>
+            <li><a class="dropdown-item" href="mterdatos.php">Meter Datos</a></li>
+            <li><a class="dropdown-item" href="pan.html">pan</a></li>
+          </ul>
+        </li>                    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 2 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="relaciones01.php">Relaciones 1</a></li>
+            <li><a class="dropdown-item" href="relaciones02.php">Relaciones 2</a></li>
+            <li><a class="dropdown-item" href="gato.php">Relaciones 3</a></li>
+            <li><a class="dropdown-item" href="mostrargato.php">Mostrar Gatos</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados.php">Capturar Datos Relacionados</a></li>
+            <li><a class="dropdown-item" href="capturadatosrelacionados - copia.php">Capturar Datos Relacionados - Copia</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Unidad 3 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="pokedex.html">Pokedex</a></li>
+            <li><a class="dropdown-item" href="pelicula.html">Películas</a></li>
+            <li><a class="dropdown-item" href="sailor.html">Sailor moon</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container">
+
+    <div class="container">
+        <h1>Personajes de Sailor Moon</h1>
+        <form id="form">
+        <input type="text" id="search" placeholder="Buscar personaje...">
+        <input type="submit" value="Buscar">
+        </form>
+
+          </div>
+
+          <main id="main"></main>
+
+        <script>
+    const API_URL = "https://api.jikan.moe/v4/anime/530/characters";
+    const form = document.getElementById('form');
+    const search = document.getElementById('search');
+    const contenedor = document.getElementById('main');
+    let listaPersonajes = [];
+
+    const searchAliases = {
+        'chibimoon': ['Chibiusa', 'Tsukino, Chibiusa', 'Chibi Usa', 'Sailor Chibi Moon'],
+        'sailor chibi moon': ['Chibiusa', 'Tsukino, Chibiusa', 'Chibi Usa', 'Sailor Chibi Moon'],
+        'chibi usa': ['Chibiusa', 'Tsukino, Chibiusa', 'Chibi Usa', 'Sailor Chibi Moon'],
+        'chibiusa': ['Chibiusa', 'Tsukino, Chibiusa', 'Chibi Usa', 'Sailor Chibi Moon']
+    };
+
+    const descripciones = {
+        'Aino, Minako': 'Una guerrera alegre y enérgica, también conocida como Sailor Venus. Es la líder del grupo de Sailor Scouts en las misiones de amor y justicia.',
+        'Artemis': 'El gato blanco guardián de Minako; su misión es aconsejar y apoyar a Sailor Venus.',
+        'Chiba, Mamoru': 'El príncipe Endymion y protector de Neo-Tokio. Es el interés amoroso de Usagi y un personaje importante en la historia.',
+        'Hino, Rei': 'Sailor Mars, una guerrera espiritual poderosa que protege con fuego y disciplina.',
+        'Tsukino, Usagi': 'La protagonista del grupo, conocida como Sailor Moon. Es amable, divertida y lucha por el amor y la justicia.',
+        'Kino, Makoto': 'Sailor Jupiter, conocida por su fuerza y su corazón protector.',
+        'Mizuno, Ami': 'Sailor Mercury, la mente brillante del equipo. Usa su inteligencia y poderes de agua para investigar y resolver problemas.',
+        'Luna': 'La gata consejera de Usagi. Ayuda a las Sailor Scouts con información y tecnología mágica.',
+        'Queen Serenity': 'La madre de Usagi en el pasado. Era la reina del Reino de la Luna y protegía el planeta con amor.',
+        'Queen Beryl': 'La villana que dirige a las fuerzas del mal. Busca recolectar energía para servir a su maestro oscuro.',
+        'Zoisite': 'Uno de los generales del mal, con poderes que tratan de derrotar a las Sailor Scouts.',
+        'Nephrite': 'General oscuro que busca energía humana y enfrenta a las guerreras con sus poderes mágicos.',
+        'Chibiusa': 'Chibiusa Tsukino, también conocida como Sailor Chibi Moon, es la hija de Usagi del futuro. Es valiente, curiosa y lucha junto a las Sailor Scouts.',
+        'Tsukino, Chibiusa': 'Chibiusa Tsukino, también conocida como Sailor Chibi Moon, es la hija de Usagi del futuro. Es valiente, curiosa y lucha junto a las Sailor Scouts.',
+        'Chibi Usa': 'Chibiusa Tsukino, también conocida como Sailor Chibi Moon, es la hija de Usagi del futuro. Es valiente, curiosa y lucha junto a las Sailor Scouts.',
+        'Sailor Chibi Moon': 'Chibiusa Tsukino, también conocida como Sailor Chibi Moon, es la hija de Usagi del futuro. Es valiente, curiosa y lucha junto a las Sailor Scouts.'
+    };
+
+    async function conectarAPI() {
+        try {
+            const respuesta = await fetch(API_URL);
+            const datos = await respuesta.json();
+            listaPersonajes = datos.data || [];
+            mostrarPersonajes(listaPersonajes.slice(0, 24));
+        } catch (error) {
+            console.error("Error al conectar con la API:", error);
+            contenedor.innerHTML = '<p>No se pudieron cargar los personajes. Intenta recargar la página.</p>';
+        }
+    }
+
+    function mostrarPersonajes(personajes) {
+        contenedor.innerHTML = '';
+        personajes.forEach(item => {
+            const { name, images } = item.character;
+            const role = item.role === 'Main' ? 'Principal' : item.role === 'Supporting' ? 'Secundario' : item.role;
+            const imageUrl = images?.jpg?.image_url || '';
+            const descripcion = descripciones[name] || 'Descripción en español no disponible en la API.';
+
+            contenedor.innerHTML += `
+                <div class="movie">
+                    <img src="${imageUrl}" alt="${name}">
+                    <div class="movie-info">
+                        <h3>${name}</h3>
+                        <span>Rol: ${role}</span>
+                    </div>
+                    <div class="overview">
+                        <h3>Descripción</h3>
+                        ${descripcion}
+                    </div>
+                </div>
+            `;
+        });
+
+        if (personajes.length === 0) {
+            contenedor.innerHTML = '<p>No se encontraron personajes para esa búsqueda.</p>';
+        }
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const termino = search.value.trim().toLowerCase();
+        const aliasNames = searchAliases[termino] || [];
+
+        if (termino) {
+            const filtrados = listaPersonajes.filter(item => {
+                const characterName = item.character.name.toLowerCase();
+                const matchDefault = characterName.includes(termino);
+                const matchAlias = aliasNames.some(alias => characterName.includes(alias.toLowerCase()));
+                return matchDefault || matchAlias;
+            });
+
+            mostrarPersonajes(filtrados.slice(0, 24));
+            search.value = '';
+        } else {
+            mostrarPersonajes(listaPersonajes.slice(0, 24));
+        }
+    });
+
+    conectarAPI();
+</script>
+
+</div>
+</body>
+</html>
